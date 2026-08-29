@@ -1,0 +1,6 @@
+companyName,industry,employees,revenue,location,website,contactName,contactRole,email,phone,linkedin,technologies
+"DataFlow Systems","SaaS",340,"$17M","Bangalore, India","https://dataflow.systems","Vikramaditya Bose","VP of Engineering","vikram@dataflow.systems","+91 98450 77112","https://linkedin.com/in/vikram-dataflow","React, Node.js, AWS, Kubernetes, Kafka"
+"FinEdge Capital","Fintech",220,"$11M","Mumbai, India","https://finedge.capital","Rohit Singhania","Chief Risk Officer","rohit@finedge.capital","+91 98200 66441","https://linkedin.com/in/rohitsinghania-finedge","Python, FastAPI, Redis, Postgres"
+"SecureNet AI","Cybersecurity",190,"$14M","Hyderabad, India","https://securenet.ai","Divya Shankar","Chief Information Security Officer","divya@securenet.ai","+91 97000 88221","https://linkedin.com/in/divyashankar-sec","Go, Rust, AWS, Docker, ZeroTrust"
+"HealthMatrix Dx","HealthTech",150,"$8.5M","Chennai, India","https://healthmatrix.in","Dr. Arvind Menon","Chief Medical Officer","arvind@healthmatrix.in","+91 94440 33221","https://linkedin.com/in/drarvindmenon","React, Python, GCP, FHIR, PostgreSQL"
+"CraftStudio Goods","Retail & E-commerce",25,"$850K","Delhi NCR, India","https://craftstudio.shop","Aditi Verma","Founder","aditi@craftstudio.shop","+91 98110 55443","https://linkedin.com/in/aditiverma-craft","Shopify, Liquid, JavaScript"
