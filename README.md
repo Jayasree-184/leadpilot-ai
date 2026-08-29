@@ -5,6 +5,10 @@
 LeadPilot AI is an enterprise-grade B2B sales intelligence platform designed to replace subjective lead scoring with **explainable AI qualification**, **algorithmic prioritization**, and **hyper-personalized executive outreach**.
 
 ---
+## 🔗 Live Demo
+
+- **App:** [leadpilot-ai-green.vercel.app](https://leadpilot-ai-green.vercel.app)
+- **API Health:** [leadpilot-api-st69.onrender.com/api/health](https://leadpilot-api-st69.onrender.com/api/health)
 
 ## 1. Executive Summary & Problem
 
