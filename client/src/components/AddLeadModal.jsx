@@ -53,22 +53,22 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-2xl bg-[#0d121f] rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-slide-up max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-2xl animate-fade-in">
+      <div className="relative w-full max-w-2xl glass-panel rounded-3xl shadow-2xl overflow-hidden animate-slide-up max-h-[90vh] flex flex-col border border-purple-500/30">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0f1523]">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-purple-500/15 text-purple-300 border border-purple-400/30 shadow-[0_0_12px_rgba(168,85,247,0.3)]">
               <Building2 className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-base font-semibold text-white">Add New Lead</h2>
+              <h2 className="text-base font-heading font-semibold text-white">Add New Lead</h2>
               <p className="text-xs text-slate-400">Enter company profile and key decision maker info</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition"
+            className="p-1.5 rounded-xl glass-pill text-slate-400 hover:text-white transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -79,7 +79,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
           {/* Company Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Company Name *
               </label>
               <input
@@ -89,12 +89,12 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 onChange={handleChange}
                 placeholder="e.g. Apex Cloud Solutions"
                 required
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Industry *
               </label>
               <select
@@ -102,7 +102,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 value={formData.industry}
                 onChange={handleChange}
                 required
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white focus:outline-none cursor-pointer"
               >
                 <option value="SaaS">SaaS</option>
                 <option value="AI & Analytics">AI & Analytics</option>
@@ -117,7 +117,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Employees
               </label>
               <input
@@ -126,12 +126,12 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 value={formData.employees}
                 onChange={handleChange}
                 placeholder="e.g. 150"
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Annual Revenue
               </label>
               <input
@@ -140,12 +140,12 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 value={formData.revenue}
                 onChange={handleChange}
                 placeholder="e.g. $8M"
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Location
               </label>
               <input
@@ -154,12 +154,12 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="e.g. Bangalore, India"
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
                 Website
               </label>
               <input
@@ -168,14 +168,14 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                 value={formData.website}
                 onChange={handleChange}
                 placeholder="https://company.io"
-                className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+                className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
               />
             </div>
           </div>
 
           {/* Contact Details */}
-          <div className="pt-3 border-t border-slate-800/80">
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+          <div className="pt-3 border-t border-white/10">
+            <h3 className="text-xs font-heading font-semibold text-cyan-300 uppercase tracking-wider mb-3">
               Target Decision Maker (Fictional Demo Contact)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -187,7 +187,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                   value={formData.contactName}
                   onChange={handleChange}
                   placeholder="e.g. Maya Krishnan"
-                  className="w-full px-3 py-1.5 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-3.5 py-2 text-sm glass-input rounded-xl text-white focus:outline-none"
                 />
               </div>
 
@@ -199,7 +199,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                   value={formData.contactRole}
                   onChange={handleChange}
                   placeholder="e.g. Chief Technology Officer"
-                  className="w-full px-3 py-1.5 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-3.5 py-2 text-sm glass-input rounded-xl text-white focus:outline-none"
                 />
               </div>
 
@@ -211,7 +211,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. maya@company.io"
-                  className="w-full px-3 py-1.5 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-3.5 py-2 text-sm glass-input rounded-xl text-white focus:outline-none"
                 />
               </div>
 
@@ -223,7 +223,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="e.g. +91 98765 12345"
-                  className="w-full px-3 py-1.5 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-3.5 py-2 text-sm glass-input rounded-xl text-white focus:outline-none"
                 />
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
 
           {/* Tech Stack */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
               Technologies / Tech Stack (comma separated)
             </label>
             <input
@@ -240,38 +240,38 @@ export default function AddLeadModal({ isOpen, onClose, onSuccess }) {
               value={formData.technologies}
               onChange={handleChange}
               placeholder="e.g. React, Node.js, AWS, Kubernetes, PostgreSQL"
-              className="w-full px-3.5 py-2 text-sm bg-slate-900/90 border border-slate-700/80 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+              className="w-full px-3.5 py-2.5 text-sm glass-input rounded-xl text-white placeholder:text-slate-500 focus:outline-none"
             />
           </div>
 
           {/* Auto-analyze Toggle */}
-          <div className="flex items-center gap-2.5 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
+          <div className="flex items-center gap-3 p-3.5 rounded-2xl glass-pill border border-purple-500/30 bg-purple-500/[0.06]">
             <input
               type="checkbox"
               id="autoAnalyze"
               name="autoAnalyze"
               checked={formData.autoAnalyze}
               onChange={handleChange}
-              className="w-4 h-4 rounded text-blue-600 bg-slate-900 border-slate-700 focus:ring-blue-500"
+              className="w-4 h-4 rounded text-purple-600 bg-black/40 border-slate-700 focus:ring-purple-500 cursor-pointer"
             />
-            <label htmlFor="autoAnalyze" className="text-xs font-medium text-blue-200 cursor-pointer">
+            <label htmlFor="autoAnalyze" className="text-xs font-medium text-cyan-200 cursor-pointer font-heading">
               Automatically trigger AI lead qualification and outreach generation on save
             </label>
           </div>
 
           {/* Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition"
+              className="px-4 py-2 text-xs font-medium text-slate-300 glass-btn-secondary rounded-xl transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 px-5 py-2 text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition disabled:opacity-50"
+              className="flex items-center gap-2 px-5 py-2.5 text-xs font-semibold glass-btn-primary text-white rounded-xl transition disabled:opacity-50 shadow-glow-accent"
             >
               {loading ? (
                 <>

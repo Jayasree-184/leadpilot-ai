@@ -1,3 +1,5 @@
+@import './theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,76 +11,34 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #090d16;
+  background-color: var(--bg-canvas-start);
   color: #f1f5f9;
+  font-family: var(--font-body);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
 }
 
-/* Sleek Dark Scrollbar */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Sleek Cyber-Glass Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: rgba(5, 7, 20, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 9999px;
+  backdrop-filter: blur(8px);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
-}
-
-/* Subtle Glass / Panel utilities */
-.panel-subtle {
-  background: rgba(15, 21, 35, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.panel-elevated {
-  background: #0f1523;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.panel-card {
-  background: #131a2b;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.panel-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
-}
-
-/* Glow effects for priority categories */
-.badge-hot {
-  background: rgba(244, 63, 94, 0.12);
-  color: #fb7185;
-  border: 1px solid rgba(244, 63, 94, 0.3);
-}
-
-.badge-warm {
-  background: rgba(245, 158, 11, 0.12);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-.badge-cold {
-  background: rgba(100, 116, 139, 0.15);
-  color: #94a3b8;
-  border: 1px solid rgba(100, 116, 139, 0.25);
-}
-
-/* Subtle background mesh */
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background: rgba(168, 85, 247, 0.45);
 }

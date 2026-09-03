@@ -43,7 +43,6 @@ export default function LeadDetails({ leadId, onNavigate }) {
   const fetchLead = async (id) => {
     setLoading(true);
     try {
-      // Analyze / load cached lead
       const res = await api.analyzeLead(id);
       if (res.success) {
         setLead(res.data);
@@ -83,8 +82,8 @@ export default function LeadDetails({ leadId, onNavigate }) {
   if (loading) {
     return (
       <div className="p-8 max-w-6xl mx-auto flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-        <div className="w-10 h-10 rounded-full border-2 border-blue-500/30 border-t-blue-500 animate-spin" />
-        <p className="text-sm font-medium text-slate-400">Loading AI intelligence workspace...</p>
+        <div className="w-10 h-10 rounded-full border-2 border-purple-400/30 border-t-cyan-400 animate-spin shadow-glow-accent" />
+        <p className="text-sm font-medium font-heading text-slate-300">Loading AI intelligence workspace...</p>
       </div>
     );
   }
@@ -92,10 +91,10 @@ export default function LeadDetails({ leadId, onNavigate }) {
   if (!lead) {
     return (
       <div className="p-8 max-w-6xl mx-auto text-center space-y-4">
-        <h2 className="text-lg font-bold text-white">Lead not found</h2>
+        <h2 className="text-lg font-bold font-heading text-white">Lead not found</h2>
         <button
           onClick={() => onNavigate('leads')}
-          className="px-4 py-2 text-xs font-semibold bg-blue-600 text-white rounded-xl"
+          className="px-4 py-2 text-xs font-semibold glass-btn-primary text-white rounded-xl shadow-glow-accent"
         >
           Return to Leads
         </button>
@@ -104,23 +103,23 @@ export default function LeadDetails({ leadId, onNavigate }) {
   }
 
   return (
-    <div className="p-6 md:p-8 max-w-6xl mx-auto space-y-8 animate-fade-in">
+    <div className="p-6 md:p-8 max-w-6xl mx-auto space-y-8 animate-fade-in relative z-10">
       {/* Top Bar Navigation & Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-white/10">
         <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigate('leads')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-medium text-slate-300 border border-slate-700/80 transition active:scale-95"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl glass-btn-secondary text-xs font-medium text-slate-200 transition active:scale-95"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Leads</span>
           </button>
 
-          <span className="text-slate-600">|</span>
+          <span className="text-white/20">|</span>
 
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <span>Last analyzed:</span>
-            <strong className="text-slate-300 font-mono font-normal">
+            <strong className="text-slate-200 font-mono font-medium glass-pill px-2 py-0.5 rounded-md">
               {formatRelativeTime(lead.analyzedAt)}
             </strong>
           </div>
@@ -130,29 +129,32 @@ export default function LeadDetails({ leadId, onNavigate }) {
           <button
             onClick={handleReanalyze}
             disabled={reanalyzing}
-            className="flex items-center gap-2 px-4 py-2 text-xs font-medium bg-slate-850 hover:bg-slate-800 text-slate-200 rounded-xl border border-slate-700/80 transition disabled:opacity-50 active:scale-95"
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium glass-btn-secondary text-slate-200 rounded-xl transition disabled:opacity-50 active:scale-95"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${reanalyzing ? 'animate-spin text-blue-400' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${reanalyzing ? 'animate-spin text-cyan-400' : ''}`} />
             <span>{reanalyzing ? 'Re-analyzing...' : 'Re-analyze Lead'}</span>
           </button>
         </div>
       </div>
 
-      {/* Header Profile */}
-      <div className="bg-[#0f1523] rounded-2xl border border-white/10 p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+      {/* Header Profile on Frosted Glass */}
+      <div className="glass-panel rounded-3xl p-6 md:p-8 shadow-glass-lg flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden border border-purple-500/20">
+        {/* Ambient reflection */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-500/15 via-cyan-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="space-y-2.5 relative z-10">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
               {lead.companyName}
             </h1>
-            <span className="px-3 py-1 text-xs font-bold rounded-lg bg-blue-500/15 text-blue-400 border border-blue-500/30">
+            <span className="px-3 py-1 text-xs font-heading font-bold rounded-xl bg-purple-500/15 text-cyan-300 border border-purple-400/30 shadow-[0_0_12px_rgba(168,85,247,0.3)]">
               {lead.industry}
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
-            <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-slate-500" />
+            <span className="flex items-center gap-1.5 text-slate-300">
+              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
               <span>{lead.location}</span>
             </span>
 
@@ -161,34 +163,35 @@ export default function LeadDetails({ leadId, onNavigate }) {
                 href={lead.website}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-medium transition"
+                className="flex items-center gap-1.5 text-cyan-300 hover:text-cyan-200 font-medium glass-pill px-2.5 py-0.5 rounded-full transition"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <Globe className="w-3 h-3" />
                 <span>{lead.website.replace(/^https?:\/\//, '')}</span>
+                <ExternalLink className="w-3 h-3" />
               </a>
             )}
           </div>
         </div>
 
-        {/* Quick Company Metric Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 border-t md:border-t-0 md:border-l border-slate-800 pt-4 md:pt-0 md:pl-6">
-          <div className="bg-slate-900/80 px-3.5 py-2.5 rounded-xl border border-slate-800">
-            <div className="text-[10px] uppercase font-semibold text-slate-400">Employees</div>
-            <div className="text-sm font-bold font-mono text-white mt-0.5">
+        {/* Quick Company Metric Badges on Frosted Glass */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 relative z-10">
+          <div className="glass-card px-4 py-3 rounded-2xl">
+            <div className="text-[10px] uppercase font-heading font-semibold text-slate-400">Employees</div>
+            <div className="text-base font-bold font-mono text-white mt-0.5">
               {lead.employees ? lead.employees.toLocaleString() : '—'}
             </div>
           </div>
 
-          <div className="bg-slate-900/80 px-3.5 py-2.5 rounded-xl border border-slate-800">
-            <div className="text-[10px] uppercase font-semibold text-slate-400">Est. Revenue</div>
-            <div className="text-sm font-bold font-mono text-emerald-400 mt-0.5">
+          <div className="glass-card px-4 py-3 rounded-2xl">
+            <div className="text-[10px] uppercase font-heading font-semibold text-slate-400">Est. Revenue</div>
+            <div className="text-base font-bold font-mono text-emerald-300 mt-0.5">
               {lead.revenue || '—'}
             </div>
           </div>
 
-          <div className="bg-slate-900/80 px-3.5 py-2.5 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
-            <div className="text-[10px] uppercase font-semibold text-slate-400">Tech Stack</div>
-            <div className="text-sm font-bold font-mono text-cyan-400 mt-0.5">
+          <div className="glass-card px-4 py-3 rounded-2xl col-span-2 sm:col-span-1">
+            <div className="text-[10px] uppercase font-heading font-semibold text-slate-400">Tech Stack</div>
+            <div className="text-base font-bold font-mono text-cyan-300 mt-0.5">
               {Array.isArray(lead.technologies) ? `${lead.technologies.length} Tools` : 'Standard'}
             </div>
           </div>
@@ -216,24 +219,24 @@ export default function LeadDetails({ leadId, onNavigate }) {
       {/* Row 2: AI Qualification Insights & Recommended Decision Maker */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* AI Qualification ("Why it matters" checklist) */}
-        <div className="md:col-span-7 bg-[#0f1523] rounded-2xl border border-white/10 p-6 shadow-xl space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <div className="md:col-span-7 glass-panel rounded-3xl p-6 shadow-glass-lg space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 rounded-xl bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
                 <CheckCircle2 className="w-4 h-4" />
               </div>
-              <h3 className="text-base font-semibold text-white">AI Qualification Insights</h3>
+              <h3 className="text-base font-heading font-semibold text-white">AI Qualification Insights</h3>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+              <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full glass-pill text-slate-200">
                 Priority: <strong className="text-white">{lead.category === 'HOT' ? 'HIGH' : lead.category === 'WARM' ? 'MEDIUM' : 'LOW'}</strong>
               </span>
             </div>
           </div>
 
           <div>
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-3">
+            <span className="text-xs font-heading font-semibold text-slate-400 uppercase tracking-wider block mb-3">
               Why it matters
             </span>
             <div className="space-y-2.5">
@@ -241,9 +244,9 @@ export default function LeadDetails({ leadId, onNavigate }) {
                 lead.reasons.map((reason, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-200 leading-snug"
+                    className="flex items-start gap-2.5 p-3 rounded-xl glass-card text-xs text-slate-200 leading-snug"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
                     <span>{reason}</span>
                   </div>
                 ))
@@ -255,15 +258,15 @@ export default function LeadDetails({ leadId, onNavigate }) {
 
           {/* Tech Stack Pills */}
           {Array.isArray(lead.technologies) && lead.technologies.length > 0 && (
-            <div className="pt-3 border-t border-slate-800/80">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+            <div className="pt-3.5 border-t border-white/10">
+              <span className="text-[11px] font-heading font-semibold text-slate-400 uppercase tracking-wider block mb-2">
                 Identified Technologies
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {lead.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-2.5 py-1 text-[11px] font-mono rounded-lg bg-slate-900 text-slate-300 border border-slate-800"
+                    className="px-3 py-1 text-[11px] font-mono rounded-lg glass-pill text-slate-300"
                   >
                     {tech}
                   </span>
@@ -274,40 +277,40 @@ export default function LeadDetails({ leadId, onNavigate }) {
         </div>
 
         {/* Recommended Decision Maker */}
-        <div className="md:col-span-5 bg-[#0f1523] rounded-2xl border border-white/10 p-6 shadow-xl flex flex-col justify-between">
+        <div className="md:col-span-5 glass-panel rounded-3xl p-6 shadow-glass-lg flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 pb-3 mb-4 border-b border-slate-800">
-              <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="flex items-center gap-2.5 pb-3 mb-4 border-b border-white/10">
+              <div className="p-2 rounded-xl bg-purple-500/15 text-purple-300 border border-purple-400/30 shadow-[0_0_12px_rgba(168,85,247,0.3)]">
                 <User className="w-4 h-4" />
               </div>
-              <h3 className="text-base font-semibold text-white">Recommended Decision Maker</h3>
+              <h3 className="text-base font-heading font-semibold text-white">Recommended Decision Maker</h3>
             </div>
 
             {lead.contactName ? (
               <div className="space-y-4">
                 {/* Person Header */}
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center font-bold text-white text-base shadow-sm shrink-0">
+                <div className="p-4 rounded-2xl glass-card flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 via-indigo-600 to-cyan-400 flex items-center justify-center font-bold text-white text-base shadow-glow-accent shrink-0 border border-white/20">
                     {lead.contactName.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">{lead.contactName}</h4>
-                    <p className="text-xs text-indigo-300 font-medium">{lead.contactRole || 'Key Stakeholder'}</p>
+                    <h4 className="text-base font-heading font-bold text-white">{lead.contactName}</h4>
+                    <p className="text-xs text-purple-300 font-medium">{lead.contactRole || 'Key Stakeholder'}</p>
                   </div>
                 </div>
 
                 {/* Contact Coordinates */}
                 <div className="space-y-2 text-xs">
                   {/* Email */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800">
-                    <div className="flex items-center gap-2 text-slate-300 truncate">
-                      <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <div className="flex items-center justify-between p-3 rounded-xl glass-card">
+                    <div className="flex items-center gap-2.5 text-slate-200 truncate">
+                      <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                       <span className="truncate">{lead.email || 'Email unavailable'}</span>
                     </div>
                     {lead.email && (
                       <button
                         onClick={() => handleCopyEmail(lead.email)}
-                        className="text-slate-400 hover:text-white p-1 rounded transition shrink-0"
+                        className="text-slate-400 hover:text-white glass-pill p-1.5 rounded-lg transition shrink-0"
                         title="Copy Email"
                       >
                         {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -316,7 +319,7 @@ export default function LeadDetails({ leadId, onNavigate }) {
                   </div>
 
                   {/* Phone */}
-                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300">
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl glass-card text-slate-200">
                     <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span>{lead.phone || 'Phone unavailable'}</span>
                   </div>
@@ -327,13 +330,13 @@ export default function LeadDetails({ leadId, onNavigate }) {
                       href={lead.linkedin}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition"
+                      className="flex items-center justify-between p-3 rounded-xl glass-card text-slate-200 hover:text-cyan-300 transition"
                     >
-                      <div className="flex items-center gap-2">
-                        <Share2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <div className="flex items-center gap-2.5">
+                        <Share2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                         <span>View LinkedIn Profile</span>
                       </div>
-                      <ExternalLink className="w-3 h-3 text-slate-500" />
+                      <ExternalLink className="w-3 h-3 text-slate-400" />
                     </a>
                   ) : null}
                 </div>
@@ -341,44 +344,46 @@ export default function LeadDetails({ leadId, onNavigate }) {
             ) : (
               <div className="py-8 text-center space-y-2">
                 <p className="text-xs text-slate-400">Direct contact information unavailable.</p>
-                <div className="text-xs font-medium text-indigo-400 bg-indigo-500/10 p-2.5 rounded-xl border border-indigo-500/20">
+                <div className="text-xs font-medium text-purple-300 glass-pill p-3 rounded-xl border border-purple-500/20">
                   Target: {lead.decisionMaker || 'Chief Technology Officer (CTO)'}
                 </div>
               </div>
             )}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-500">
+          <div className="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-400">
             Fictional demo data for technical assessment simulation.
           </div>
         </div>
       </div>
 
       {/* Row 3: Next Best Action & Best Outreach Angle (Visually Prominent!) */}
-      <div className="bg-gradient-to-r from-blue-950/40 via-indigo-950/30 to-purple-950/40 rounded-2xl border border-blue-500/30 p-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="glass-panel rounded-3xl p-7 shadow-glass-lg relative overflow-hidden border border-purple-400/30">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-purple-600/15 via-cyan-600/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 space-y-5">
-          <div className="flex items-center gap-2 text-xs font-semibold text-blue-400 uppercase tracking-wider">
-            <Target className="w-4 h-4" />
-            <span>Recommended Next Best Action</span>
+          <div className="flex items-center gap-2 text-xs font-semibold text-cyan-300 uppercase tracking-wider">
+            <span className="glass-pill px-3 py-1 rounded-full flex items-center gap-1.5 border border-purple-400/30 shadow-glow-accent">
+              <Target className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="font-heading">Recommended Next Best Action</span>
+            </span>
           </div>
 
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold font-heading text-white tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               {lead.recommendedAction || `Contact ${lead.contactRole || 'the decision maker'} first.`}
             </h2>
-            <p className="text-sm text-slate-300 mt-2 max-w-3xl leading-relaxed">
+            <p className="text-sm text-slate-300 mt-2 max-w-3xl leading-relaxed font-sans">
               Engineering growth and modern technology adoption indicate an immediate software expansion and infrastructure orchestration opportunity.
             </p>
           </div>
 
           {/* Best Outreach Angle */}
           <div className="pt-4 border-t border-white/10">
-            <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider block mb-1.5">
+            <span className="text-xs font-heading font-semibold text-cyan-300 uppercase tracking-wider block mb-2">
               Best Outreach Angle
             </span>
-            <p className="text-sm font-medium text-slate-200 bg-[#090d16]/80 p-4 rounded-xl border border-white/10 leading-relaxed">
+            <p className="text-sm font-medium text-slate-100 glass-card p-4 rounded-2xl border border-white/15 leading-relaxed shadow-glass-sm">
               "{lead.outreachAngle || `Focus on engineering scalability, developer velocity, and reducing operational overhead as ${lead.companyName} expands.`}"
             </p>
           </div>
