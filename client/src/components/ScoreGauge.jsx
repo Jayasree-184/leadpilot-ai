@@ -5,7 +5,6 @@ export default function ScoreGauge({ score = 0, category = 'COLD', confidence = 
   const [animatedScore, setAnimatedScore] = useState(0);
 
   useEffect(() => {
-    // Smooth score increment animation
     let start = 0;
     const end = Math.min(100, Math.max(0, score || 0));
     if (end === 0) {
@@ -37,41 +36,41 @@ export default function ScoreGauge({ score = 0, category = 'COLD', confidence = 
   const strokeDashoffset = circumference * (1 - percent);
 
   let colorGradientId = 'coldGradient';
-  let badgeClasses = 'bg-slate-800 text-slate-300 border-slate-700';
-  let glowColor = 'rgba(148, 163, 184, 0.15)';
+  let badgeClasses = 'badge-cold';
+  let glowColor = 'rgba(6, 182, 212, 0.3)';
   let categoryLabel = 'COLD LEAD';
   let priorityLabel = 'LOW PRIORITY';
 
   if (category === 'HOT' || animatedScore >= 85) {
     colorGradientId = 'hotGradient';
-    badgeClasses = 'bg-rose-500/15 text-rose-400 border-rose-500/30 shadow-[0_0_15px_rgba(244,63,94,0.25)]';
-    glowColor = 'rgba(244, 63, 94, 0.2)';
+    badgeClasses = 'badge-hot';
+    glowColor = 'rgba(244, 63, 94, 0.38)';
     categoryLabel = 'HOT LEAD';
     priorityLabel = 'HIGH PRIORITY';
   } else if (category === 'WARM' || animatedScore >= 70) {
     colorGradientId = 'warmGradient';
-    badgeClasses = 'bg-amber-500/15 text-amber-400 border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.25)]';
-    glowColor = 'rgba(245, 158, 11, 0.2)';
+    badgeClasses = 'badge-warm';
+    glowColor = 'rgba(245, 158, 11, 0.38)';
     categoryLabel = 'WARM LEAD';
     priorityLabel = 'MEDIUM PRIORITY';
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-6 bg-[#0c111d] rounded-2xl border border-white/10 shadow-2xl overflow-hidden group">
-      {/* Background ambient glow */}
+    <div className="relative flex flex-col items-center justify-center p-6 glass-panel rounded-3xl shadow-glass-lg overflow-hidden group">
+      {/* Background ambient neon bloom */}
       <div
-        className="absolute -top-12 w-48 h-48 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-60"
+        className="absolute -top-10 w-56 h-56 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-60"
         style={{ backgroundColor: glowColor }}
       />
 
       <div className="w-full flex items-center justify-between mb-4 z-10">
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+        <div className="flex items-center gap-2 text-xs font-heading font-semibold text-slate-300 uppercase tracking-wider">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
           <span>AI LEAD SCORE</span>
         </div>
-        <div className="flex items-center gap-1 text-[11px] font-medium text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-700/60">
-          <ShieldCheck className="w-3 h-3 text-emerald-400" />
-          <span>Confidence: <strong className="text-slate-200 uppercase">{confidence}</strong></span>
+        <div className="flex items-center gap-1.5 text-[11px] font-medium text-slate-300 glass-pill px-2.5 py-1 rounded-full">
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Confidence: <strong className="text-white uppercase">{confidence}</strong></span>
         </div>
       </div>
 
@@ -88,16 +87,19 @@ export default function ScoreGauge({ score = 0, category = 'COLD', confidence = 
               <stop offset="100%" stopColor="#fbbf24" />
             </linearGradient>
             <linearGradient id="coldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="#818cf8" />
+              <stop offset="0%" stopColor="#a855f7" />
+              <stop offset="100%" stopColor="#06b6d4" />
             </linearGradient>
+            <filter id="gaugeShadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="currentColor" floodOpacity="0.5" />
+            </filter>
           </defs>
 
           {/* Background Track Arc */}
           <path
             d="M 20 100 A 80 80 0 0 1 180 100"
             fill="none"
-            stroke="#1e293b"
+            stroke="rgba(255, 255, 255, 0.08)"
             strokeWidth="14"
             strokeLinecap="round"
           />
@@ -117,10 +119,10 @@ export default function ScoreGauge({ score = 0, category = 'COLD', confidence = 
 
         {/* Center Score Display */}
         <div className="absolute bottom-0 text-center flex flex-col items-center">
-          <span className="text-4xl font-extrabold tracking-tight text-white font-mono leading-none">
+          <span className="text-4xl font-extrabold tracking-tight text-white font-mono leading-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
             {animatedScore}
           </span>
-          <span className="text-[11px] font-medium text-slate-400 mt-0.5">
+          <span className="text-[11px] font-semibold text-slate-400 mt-0.5">
             / 100
           </span>
         </div>
@@ -128,10 +130,10 @@ export default function ScoreGauge({ score = 0, category = 'COLD', confidence = 
 
       {/* Category and Priority Badges */}
       <div className="flex items-center gap-2 mt-4 z-10">
-        <span className={`px-3 py-1 text-xs font-bold rounded-lg border tracking-wide uppercase ${badgeClasses}`}>
+        <span className={`px-3 py-1 text-xs font-heading font-bold rounded-xl tracking-wide uppercase ${badgeClasses}`}>
           {categoryLabel}
         </span>
-        <span className="px-2.5 py-1 text-[11px] font-medium bg-slate-800/80 text-slate-300 rounded-lg border border-slate-700/60 uppercase tracking-wide">
+        <span className="px-2.5 py-1 text-[11px] font-medium glass-pill text-slate-300 rounded-xl uppercase tracking-wide">
           {priorityLabel}
         </span>
       </div>

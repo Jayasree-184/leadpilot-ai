@@ -50,32 +50,42 @@ export default function AppShell({
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'leads', label: 'Leads', icon: Users },
+    { id: 'leads', label: 'Leads Pipeline', icon: Users },
     { id: 'import', label: 'Import CSV', icon: UploadCloud }
   ];
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col md:flex-row">
+    <div className="min-h-screen glass-canvas-mesh text-slate-100 flex flex-col md:flex-row relative selection:bg-purple-500/30 selection:text-cyan-200">
+      {/* Ambient Multi-Layer Atmospheric Light Glows */}
+      <div className="fixed top-[-12%] left-[-6%] w-[520px] h-[520px] rounded-full bg-purple-600/15 blur-[130px] pointer-events-none animate-float-slow" />
+      <div className="fixed top-[22%] right-[-6%] w-[480px] h-[480px] rounded-full bg-cyan-500/14 blur-[140px] pointer-events-none animate-float-reverse" />
+      <div className="fixed bottom-[-10%] left-[28%] w-[560px] h-[560px] rounded-full bg-indigo-600/12 blur-[150px] pointer-events-none" />
+
       {/* Mobile Top Header */}
-      <div className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0d121f] border-b border-white/10 sticky top-0 z-40">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-glow-blue">
+      <div className="md:hidden flex items-center justify-between px-4 py-3 glass-dock sticky top-0 z-40">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-400 flex items-center justify-center shadow-glow-accent border border-white/20">
             <Zap className="w-4 h-4 text-white fill-white" />
           </div>
-          <span className="font-bold text-base tracking-tight text-white">LeadPilot AI</span>
+          <span className="font-heading font-bold text-base tracking-tight text-white flex items-center gap-1.5">
+            <span>LeadPilot</span>
+            <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-purple-500/20 text-cyan-300 border border-purple-400/30">
+              AI
+            </span>
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="p-1.5 rounded-lg bg-blue-600 text-white shadow-sm"
+            className="p-2 rounded-xl glass-btn-primary text-white shadow-sm"
             title="Add Lead"
           >
             <Plus className="w-4 h-4" />
           </button>
           <button
             onClick={() => setMobileNavOpen(!mobileNavOpen)}
-            className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+            className="p-2 rounded-xl glass-pill text-slate-300 hover:text-white"
           >
             {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -84,15 +94,15 @@ export default function AppShell({
 
       {/* Mobile Slide-out Drawer */}
       {mobileNavOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
-          <div className="w-64 h-full bg-[#0d121f] border-r border-white/10 p-5 flex flex-col justify-between">
+        <div className="md:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md animate-fade-in">
+          <div className="w-64 h-full glass-dock p-5 flex flex-col justify-between shadow-2xl">
             <div>
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-400 flex items-center justify-center shadow-glow-accent border border-white/20">
                     <Zap className="w-4 h-4 text-white fill-white" />
                   </div>
-                  <span className="font-bold text-base tracking-tight text-white">LeadPilot AI</span>
+                  <span className="font-heading font-bold text-base tracking-tight text-white">LeadPilot AI</span>
                 </div>
                 <button
                   onClick={() => setMobileNavOpen(false)}
@@ -113,10 +123,10 @@ export default function AppShell({
                         onNavigate(item.id);
                         setMobileNavOpen(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${
+                      className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition ${
                         isActive
-                          ? 'bg-blue-600/15 text-blue-400 border border-blue-500/30'
-                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                          ? 'bg-gradient-to-r from-purple-600/25 to-cyan-500/20 text-cyan-200 border border-purple-400/40 shadow-glow-accent font-semibold'
+                          : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -127,67 +137,67 @@ export default function AppShell({
               </nav>
             </div>
 
-            <div className="space-y-3 pt-4 border-t border-slate-800">
+            <div className="space-y-3 pt-4 border-t border-white/10">
               <button
                 onClick={() => {
                   setIsSettingsOpen(true);
                   setMobileNavOpen(false);
                 }}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
               >
                 <Settings className="w-4 h-4" />
                 <span>Settings</span>
               </button>
 
-              <div className="p-3 rounded-xl bg-[#090d16] border border-white/5 flex items-center justify-between text-xs">
+              <div className="p-3 rounded-xl glass-pill flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
                   <span className="text-slate-300 font-medium">AI Engine</span>
                 </div>
-                <span className="text-[10px] text-emerald-400 uppercase font-mono">Operational</span>
+                <span className="text-[10px] text-cyan-300 uppercase font-mono">Operational</span>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Desktop Left Sidebar */}
-      <aside className="hidden md:flex w-64 shrink-0 bg-[#0d121f] border-r border-white/10 flex-col justify-between p-4 sticky top-0 h-screen z-30 select-none">
+      {/* Desktop Left Sidebar (Frosted Glass Dock) */}
+      <aside className="hidden md:flex w-64 shrink-0 glass-dock flex-col justify-between p-4 sticky top-0 h-screen z-30 select-none">
         <div>
           {/* Brand Logo & Tagline */}
-          <div className="flex items-center gap-2.5 px-2 py-3 mb-6">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 flex items-center justify-center shadow-glow-blue">
+          <div className="flex items-center gap-3 px-2 py-3 mb-6">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-400 flex items-center justify-center shadow-glow-accent border border-white/25">
               <Zap className="w-5 h-5 text-white fill-white" />
             </div>
             <div>
-              <div className="font-bold text-base tracking-tight text-white flex items-center gap-1.5">
+              <div className="font-heading font-bold text-base tracking-tight text-white flex items-center gap-1.5">
                 <span>LeadPilot</span>
-                <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-purple-500/25 text-cyan-300 border border-purple-400/30 shadow-[0_0_12px_rgba(168,85,247,0.3)]">
                   AI
                 </span>
               </div>
-              <div className="text-[11px] text-slate-400 tracking-tight">Sales Intelligence</div>
+              <div className="text-[11px] text-slate-400 font-medium tracking-tight">Sales Intelligence</div>
             </div>
           </div>
 
           {/* Quick Action: Add Lead Button */}
-          <div className="px-2 mb-5">
+          <div className="px-1 mb-6">
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="w-full flex items-center justify-center gap-2 py-2 px-3 text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl shadow-glow-blue transition active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-semibold glass-btn-primary text-white rounded-xl transition active:scale-[0.98]"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Lead</span>
-              <kbd className="ml-auto text-[10px] font-mono px-1 py-0.5 bg-black/30 rounded text-blue-200">
+              <kbd className="ml-auto text-[10px] font-mono px-1.5 py-0.5 bg-black/40 rounded border border-white/15 text-cyan-200">
                 N
               </kbd>
             </button>
           </div>
 
           {/* Primary Navigation */}
-          <nav className="space-y-1 px-1">
-            <div className="px-2 pb-2 text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-              Navigation
+          <nav className="space-y-1.5 px-1">
+            <div className="px-2 pb-2 text-[10px] font-semibold text-slate-400/80 uppercase tracking-wider font-heading">
+              Platform
             </div>
 
             {navItems.map(item => {
@@ -197,17 +207,17 @@ export default function AppShell({
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition duration-200 ${
                     isActive
-                      ? 'bg-blue-600/15 text-blue-400 border border-blue-500/30 shadow-sm font-semibold'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                      ? 'bg-gradient-to-r from-purple-600/25 via-indigo-600/20 to-cyan-500/20 text-cyan-200 border border-purple-400/40 shadow-glow-accent font-semibold'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.05]'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-blue-400' : 'text-slate-400'}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-cyan-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]' : 'text-slate-400'}`} />
                     <span>{item.label}</span>
                   </div>
-                  {isActive && <ChevronRight className="w-3.5 h-3.5 text-blue-400" />}
+                  {isActive && <ChevronRight className="w-3.5 h-3.5 text-cyan-400" />}
                 </button>
               );
             })}
@@ -215,17 +225,17 @@ export default function AppShell({
         </div>
 
         {/* Bottom Sidebar Footer */}
-        <div className="space-y-3 px-1 pt-4 border-t border-slate-800/80">
+        <div className="space-y-3 px-1 pt-4 border-t border-white/10">
           {/* Quick Search shortcut hint */}
           <div
             onClick={() => onNavigate('leads', { autoFocusSearch: true })}
-            className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400 cursor-pointer hover:border-slate-700 transition"
+            className="flex items-center justify-between px-3.5 py-2 rounded-xl glass-pill text-xs text-slate-300 cursor-pointer hover:border-white/20 hover:bg-white/[0.08] transition"
           >
             <span className="flex items-center gap-1.5">
-              <Command className="w-3.5 h-3.5" />
+              <Command className="w-3.5 h-3.5 text-slate-400" />
               <span>Search leads</span>
             </span>
-            <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300 border border-slate-700">
+            <kbd className="px-1.5 py-0.5 rounded bg-black/40 text-[10px] font-mono text-slate-300 border border-white/10">
               /
             </kbd>
           </div>
@@ -233,22 +243,22 @@ export default function AppShell({
           {/* Settings Button */}
           <button
             onClick={() => setIsSettingsOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 transition"
+            className="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] transition"
           >
             <Settings className="w-4 h-4" />
             <span>Settings & Diagnostics</span>
           </button>
 
           {/* Live AI Engine Status Badge */}
-          <div className="p-2.5 rounded-xl bg-[#090d16] border border-white/5 flex items-center justify-between">
+          <div className="p-3 rounded-xl glass-pill flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
               </span>
-              <span className="text-xs font-medium text-slate-300">AI Engine</span>
+              <span className="text-xs font-medium text-slate-200 font-heading">AI Engine</span>
             </div>
-            <span className="text-[10px] font-mono font-semibold text-emerald-400 uppercase tracking-wider">
+            <span className="text-[10px] font-mono font-semibold text-cyan-300 uppercase tracking-wider">
               Operational
             </span>
           </div>
@@ -256,7 +266,7 @@ export default function AppShell({
       </aside>
 
       {/* Main App Content Area */}
-      <main className="flex-1 min-w-0 flex flex-col bg-[#090d16] bg-grid-pattern">
+      <main className="flex-1 min-w-0 flex flex-col relative z-10">
         {children}
       </main>
 
