@@ -93,6 +93,7 @@ ACTIONABLE 1-CLICK OUTREACH GENERATION
 
 ### Deployment
 
+```
 [ Frontend: Vercel (Static Vite Build) ]
                 │
         REST API (HTTPS, CORS-enabled)
@@ -102,6 +103,15 @@ ACTIONABLE 1-CLICK OUTREACH GENERATION
       ┌─────────┴─────────┐
 [ MongoDB Atlas ]   [ Google Gemini API ]
   (M0 Free Tier)      (gemini-3.7-flash)
+```
+
+| Layer | Provider | Notes |
+|---|---|---|
+| Frontend hosting | Vercel | Static build, auto-deployed from `main` |
+| Backend hosting | Render | Node.js web service, auto-deployed from `main` |
+| Database | MongoDB Atlas | M0 free-tier cluster |
+| AI Engine | Google Gemini (`gemini-3.7-flash`) | Falls back to deterministic demo mode if unset |
+| Uptime | UptimeRobot | Keeps backend warm on Render's free tier |
 
 ### Frontend
 - **Framework**: React 19 + Vite
