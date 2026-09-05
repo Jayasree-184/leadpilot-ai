@@ -91,6 +91,18 @@ ACTIONABLE 1-CLICK OUTREACH GENERATION
 [ MongoDB / In-Memory ]  [ Gemini 3.7 Flash ] [ Deterministic Engine ]
 ```
 
+### Deployment
+
+[ Frontend: Vercel (Static Vite Build) ]
+                │
+        REST API (HTTPS, CORS-enabled)
+                │
+[ Backend: Render (Node.js Web Service) ]
+                │
+      ┌─────────┴─────────┐
+[ MongoDB Atlas ]   [ Google Gemini API ]
+  (M0 Free Tier)      (gemini-3.7-flash)
+
 ### Frontend
 - **Framework**: React 19 + Vite
 - **Styling**: Tailwind CSS (Dark-first enterprise theme)
